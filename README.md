@@ -43,9 +43,11 @@ individual C plugins.
 ## Next Steps / Project Goals
 
 - Hook up a build pipeline to automatically build/package all of the plugins and
-  upload them as GitHub Releases (i.e. use GitHub Releases to host the assets). 
+  upload them as [GitHub Releases][4] (i.e. use GitHub Releases to host the
+  assets).
 
 
 [1]: https://www.monitoring-plugins.org
 [2]: https://github.com/sensu/sensu-go
 [3]: https://docs.sensu.io/sensu-core/2.0/reference/assets/
+[4]: https://help.github.com/articles/about-releases/
