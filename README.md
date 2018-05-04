@@ -5,7 +5,7 @@
 An attempt at packaging individual C plugins from the [Monitoring Plugins][1]
 project in the new [Sensu 2.0][2] [Asset][3] format. The goal of the project is
 to provide a simple workflow for creating Sensu 2.0 Assets containing individual
-C plugins (nice and small!). 
+C plugins (nice and small!).
 
 ## Usage
 
@@ -40,6 +40,10 @@ platforms (e.g. for Ubuntu/RHEL/etc), but the interface should always be a two
 step process of building a container, and running it to export assets containing
 individual C plugins.
 
+## Next Steps / Project Goals
+
+- Hook up a build pipeline to automatically build/package all of the plugins and
+  upload them as GitHub Releases (i.e. use GitHub Releases to host the assets). 
 
 
 [1]: https://www.monitoring-plugins.org
