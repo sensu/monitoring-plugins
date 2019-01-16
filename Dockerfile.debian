@@ -1,0 +1,11 @@
+FROM debian:stretch as builder
+
+ARG SENSU_GO_ASSET_VERSION="v0.0.1"
+ARG PLUGINS="check_http"
+
+ADD create-sensu-asset /usr/bin/create-sensu-asset
+
+WORKDIR /usr/lib/nagios/plugins/
+
+RUN apt-get update && apt-get install -y monitoring-plugins-basic
+RUN create-sensu-asset -a monitoring-plugins -b $PLUGINS -v $SENSU_GO_ASSET_VERSION -o /
