@@ -16,20 +16,11 @@ C plugins (nice and small!).
    $ cd monitoring-plugins-assets
    ~~~
 
-2. Build the Docker container:
+2. Build the Docker containers and extract the Sensu assets:
 
    ~~~
-   $ docker build -t monitoring-plugins:latest .
+   $ ./build.sh
    ~~~
-
-3. Export Sensu 2.0 Assets:
-
-   ~~~
-   $ docker run -v $PWD:/output -e "PLUGINS=check_http check_tcp" monitoring-plugins:latest
-   ~~~
-
-   The Docker container will output a single [Sensu 2.0 Asset][3] per plugin
-   into your local working directory, and then exit.
 
 ## Project Status
 
