@@ -1,0 +1,11 @@
+FROM alpine:latest as builder
+
+ARG SENSU_GO_ASSET_VERSION="v0.0.1"
+ARG PLUGINS="check_http"
+
+ADD create-sensu-asset /usr/bin/create-sensu-asset
+
+WORKDIR /usr/lib/monitoring-plugins/
+
+RUN apk --update add bash monitoring-plugins coreutils libssl1.0 libintl libcrypto1.0
+RUN create-sensu-asset -a monitoring-plugins -b $PLUGINS -v $SENSU_GO_ASSET_VERSION -o /
