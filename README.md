@@ -1,19 +1,55 @@
-# Monitoring Plugins Assets
+# Sensu Assets: Monitoring Plugins
 
 ## Overview
 
-An attempt at packaging individual C plugins from the [Monitoring Plugins][1]
-project in the new [Sensu 2.0][2] [Asset][3] format. The goal of the project is
-to provide a simple workflow for creating Sensu 2.0 Assets containing individual
-C plugins (nice and small!).
+An attempt at packaging individual C plugins from the excellent Monitoring
+Plugins project (https://monitoring-plugins.org)[1] in the [Sensu Go][2]
+[Asset][3] format. The goal of the project is to provide a simple workflow for
+creating a Sensu Go Asset containing the C plugins.
 
-## Usage
+## Goal
+
+The goal of this project is to provide Sensu Go Assets for CentOS Linux, Debian
+Linux, and Alpine Linux containing all of the plugins from the Monitoring
+Plugins project.
+
+### Current Status
+
+Currently, This project will attempt to provide support for the following plugins:
+
+- `check_disk`
+- `check_dns`
+- `check_http`
+- `check_ntp`
+- `check_ntp_peer`
+- `check_ntp_time`
+- `check_ping`
+- `check_procs`
+- `check_smtp`
+- `check_ssh`
+- `check_swap`
+- `check_tcp`
+- `check_time`
+- `check_users`
+
+### Next Steps
+
+In no particular order:
+
+- Add support for platform-specific exclusions in the build script (i.e. if
+  `check_snmp` is available for CentOS and Debian, but not for Alpine, just skip
+  it on Alpine?)
+- Build the plugins from scratch instead of installing the distribution packages
+  (which are inconsistent between Alpine, Debian, and CentOS)
+- Hook up a CI pipeline to automate the builds
+
+## Build
 
 1. Clone this repo:
 
    ~~~
-   $ git clone git@github.com:calebhailey/monitoring-plugins-assets.git
-   $ cd monitoring-plugins-assets
+   $ git clone git@github.com:calebhailey/sensu-assets-monitoring-plugins.git
+   $ cd sensu-assets-monitoring-plugins
    ~~~
 
 2. Build the Docker containers and extract the Sensu assets:
@@ -22,23 +58,10 @@ C plugins (nice and small!).
    $ ./build.sh
    ~~~
 
-## Project Status
-
-This is a prototype! My initial build target is Alpine Linux. Instead of
-compiling the plugins myself, I'm being lazy and using the [Alpine Linux
-monitoring-plugins packages][4]. Eventually I'd like to add support for more
-platforms (e.g. for Ubuntu/RHEL/etc), but the interface should always be a two
-step process of building a container, and running it to export assets containing
-individual C plugins.
-
-## Next Steps / Project Goals
-
-- Hook up a build pipeline to automatically build/package all of the plugins and
-  upload them as [GitHub Releases][4] (i.e. use GitHub Releases to host the
-  assets).
+   _NOTE: if your local docker installation is configured to require root access
+   you will need to run the build script as root (i.e. `sudo ./build.sh`)._
 
 
 [1]: https://www.monitoring-plugins.org
 [2]: https://github.com/sensu/sensu-go
-[3]: https://docs.sensu.io/sensu-core/2.0/reference/assets/
-[4]: https://help.github.com/articles/about-releases/
+[3]: https://docs.sensu.io/sensu-go/latest/reference/assets/

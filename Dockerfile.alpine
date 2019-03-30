@@ -8,5 +8,5 @@ ADD create-sensu-asset /usr/bin/create-sensu-asset
 
 WORKDIR /usr/lib/monitoring-plugins/
 
-RUN apk --update add bash monitoring-plugins coreutils libssl1.0 libintl libcrypto1.0
+RUN apk --update add bash monitoring-plugins coreutils libintl
 RUN create-sensu-asset -a $SENSU_GO_ASSET_NAME -b $PLUGINS -v $SENSU_GO_ASSET_VERSION -o /

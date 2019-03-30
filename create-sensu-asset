@@ -108,7 +108,7 @@ if [[ -n $BINS ]]; then
       echo "Copying: $BINARY into the asset bin/$BINARY"
       cp $BINARY $PKG_DIR/bin/;
       if [[ $(which ldd) ]]; then
-        LINKED_LIBRARIES=($(ldd $BINARY | awk '{print $3}'))
+        LINKED_LIBRARIES=($(ldd $BINARY | grep "=>" | grep -v "vdso.so.1" | awk '{print $3}'))
         for INDEX in "${!LINKED_LIBRARIES[@]}"
         do
           LINKED_LIBRARY="${LINKED_LIBRARIES[$INDEX]}"
