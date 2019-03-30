@@ -1,0 +1,29 @@
+---
+description: "monitoring-plugins"
+builds:
+- platform: "linux"
+  arch: "amd64"
+  asset_filename: "#{repo}-centos_#{version}_linux_amd64.tar.gz"
+  sha_filename: "#{repo}_#{version}_sha512-checksums.txt"
+  filter:
+  - "entity.system.os == 'linux'"
+  - "entity.system.platform" == 'centos'"
+  - "entity.system.arch == 'amd64'"
+
+- platform: "linux"
+  arch: "amd64"
+  asset_filename: "#{repo}-debian_#{version}_linux_amd64.tar.gz"
+  sha_filename: "#{repo}_#{version}_sha512-checksums.txt"
+  filter:
+  - "entity.system.os == 'linux'"
+  - "entity.system.platform" == 'debian'"
+  - "entity.system.arch == 'amd64'"
+
+- platform: "linux"
+  arch: "amd64"
+  asset_filename: "#{repo}-alpine_#{version}_linux_amd64.tar.gz"
+  sha_filename: "#{repo}_#{version}_sha512-checksums.txt"
+  filter:
+  - "entity.system.os == 'linux'"
+  - "entity.system.platform" == 'alpine'"
+  - "entity.system.arch == 'amd64'"

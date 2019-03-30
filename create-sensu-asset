@@ -63,7 +63,7 @@ do
         ASSET_NAME=${OPTARG}
         ;;
       v)
-        ASSET_VERSION="-${OPTARG}"
+        ASSET_VERSION="_${OPTARG}"
         ;;
       b)
         BINS=${OPTARG}
@@ -169,8 +169,11 @@ if [[ -n $EXTRAS ]]; then
   done
 fi
 
-export ASSET_OS="-$(uname -s | tr '[:upper:]' '[:lower:]')"
-export ASSET_ARCH="-$(uname -m)"
+export ASSET_OS="_$(uname -s | tr '[:upper:]' '[:lower:]')"
+export ASSET_ARCH="_$(uname -m)"
+if [[ $ASSET_ARCH = "_x86_64" ]]; then
+  export ASSET_ARCH="_amd64"
+fi
 
 ASSET="${OUTPUT_DIR}/${ASSET_NAME}${ASSET_VERSION}${ASSET_OS}${ASSET_ARCH}.tar.gz"
 echo "";
