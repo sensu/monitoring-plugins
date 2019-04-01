@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 export PLUGINS="check_disk,check_http,check_ntp,check_ntp_peer,check_ntp_time,check_ping,check_procs,check_smtp,check_ssh,check_swap,check_tcp,check_time,check_users"
-export SENSU_GO_ASSET_VERSION="2.2-1"
+export SENSU_GO_ASSET_VERSION=$(git describe --abbrev=0 --tags)
 
 mkdir assets/
 for PLATFORM in alpine debian centos;
