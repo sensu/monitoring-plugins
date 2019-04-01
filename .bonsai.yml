@@ -7,7 +7,7 @@ builds:
   sha_filename: "#{repo}_#{version}_sha512-checksums.txt"
   filter:
   - "entity.system.os == 'linux'"
-  - "entity.system.platform" == 'centos'"
+  - "entity.system.platform == 'centos'"
   - "entity.system.arch == 'amd64'"
 
 - platform: "linux"
