@@ -1,7 +1,7 @@
 FROM debian:stretch as builder
 
 ARG SENSU_GO_ASSET_NAME="monitoring-plugins-debian"
-ARG SENSU_GO_ASSET_VERSION="v0.0.1"
+ARG SENSU_GO_ASSET_VERSION="2.2.0-2"
 ARG PLUGINS="check_http"
 
 ADD create-sensu-asset /usr/bin/create-sensu-asset
