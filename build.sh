@@ -12,7 +12,7 @@ do
 done;
 
 cd assets/
-export SENSU_GO_CHECKSUMS_FILENAME="sensu-assets-monitoring-plugins_${SENSU_GO_ASSET_VERSION}_sha512-checksums.txt"
+export SENSU_GO_CHECKSUMS_FILENAME="monitoring-plugins_${SENSU_GO_ASSET_VERSION}_sha512-checksums.txt"
 if [[ $(which sha512sum) ]]; then
   sha512sum ./*.tar.gz > $SENSU_GO_CHECKSUMS_FILENAME;
 elif [[ $(which shasum) ]]; then
