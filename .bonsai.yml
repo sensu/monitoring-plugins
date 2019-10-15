@@ -10,6 +10,15 @@ builds:
   - "entity.system.platform == 'alpine'"
   - "entity.system.arch == 'amd64'"
 
+- platform: "amazon"
+  arch: "amd64"
+  asset_filename: "monitoring-plugins-amazon_#{version}_linux_amd64.tar.gz"
+  sha_filename: "#{repo}_#{version}_sha512-checksums.txt"
+  filter:
+  - "entity.system.os == 'linux'"
+  - "entity.system.platform == 'amazon'"
+  - "entity.system.arch == 'amd64'"
+
 - platform: "centos"
   arch: "amd64"
   asset_filename: "monitoring-plugins-centos_#{version}_linux_amd64.tar.gz"
