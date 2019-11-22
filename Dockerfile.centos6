@@ -1,6 +1,6 @@
-FROM centos:7 as builder
+FROM centos:6 as builder
 
-ARG SENSU_GO_ASSET_NAME="monitoring-plugins-centos"
+ARG SENSU_GO_ASSET_NAME="monitoring-plugins-centos6"
 ARG SENSU_GO_ASSET_VERSION="2.2.0"
 ARG PLUGINS="check_http"
 

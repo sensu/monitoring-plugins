@@ -1,0 +1,12 @@
+FROM centos:7 as builder
+
+ARG SENSU_GO_ASSET_NAME="monitoring-plugins-centos7"
+ARG SENSU_GO_ASSET_VERSION="2.2.0"
+ARG PLUGINS="check_http"
+
+ADD create-sensu-asset /usr/bin/create-sensu-asset
+
+WORKDIR /usr/lib64/nagios/plugins/
+
+RUN yum install -y epel-release which && yum install -y nagios-plugins-all
+RUN create-sensu-asset -a $SENSU_GO_ASSET_NAME -b $PLUGINS -v $SENSU_GO_ASSET_VERSION -o /
