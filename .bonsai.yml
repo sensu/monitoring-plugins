@@ -19,13 +19,24 @@ builds:
   - "entity.system.platform == 'amazon'"
   - "entity.system.arch == 'amd64'"
 
-- platform: "centos"
+- platform: "centos6"
   arch: "amd64"
-  asset_filename: "monitoring-plugins-centos_#{version}_linux_amd64.tar.gz"
+  asset_filename: "monitoring-plugins-centos6_#{version}_linux_amd64.tar.gz"
   sha_filename: "#{repo}_#{version}_sha512-checksums.txt"
   filter:
   - "entity.system.os == 'linux'"
-  - "entity.system.platform == 'centos'"
+  - "entity.system.platform_family == 'rhel'"
+  - "entity.system.platform_version.split('.')[0] == '6'"
+  - "entity.system.arch == 'amd64'"
+
+- platform: "centos7"
+  arch: "amd64"
+  asset_filename: "monitoring-plugins-centos7_#{version}_linux_amd64.tar.gz"
+  sha_filename: "#{repo}_#{version}_sha512-checksums.txt"
+  filter:
+  - "entity.system.os == 'linux'"
+  - "entity.system.platform_family == 'rhel'"
+  - "entity.system.platform_version.split('.')[0] == '7'"
   - "entity.system.arch == 'amd64'"
 
 - platform: "debian"
@@ -34,5 +45,5 @@ builds:
   sha_filename: "#{repo}_#{version}_sha512-checksums.txt"
   filter:
   - "entity.system.os == 'linux'"
-  - "entity.system.platform == 'debian'"
+  - "entity.system.platform_family == 'debian'"
   - "entity.system.arch == 'amd64'"

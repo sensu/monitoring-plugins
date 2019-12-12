@@ -9,7 +9,7 @@ creating a Sensu Go Asset containing the C plugins.
 
 ## Goal
 
-The goal of this project is to provide Sensu Go Assets for CentOS Linux, Debian
+The goal of this project is to provide Sensu Go Assets for CentOS Linux (6 and 7), Debian
 Linux, and Alpine Linux containing all of the plugins from the Monitoring
 Plugins project.
 
@@ -48,8 +48,8 @@ In no particular order:
 1. Clone this repo:
 
    ~~~
-   $ git clone git@github.com:calebhailey/sensu-assets-monitoring-plugins.git
-   $ cd sensu-assets-monitoring-plugins
+   $ git clone git@github.com:sensu/monitoring-plugins.git
+   $ cd monitoring-plugins
    ~~~
 
 2. Build the Docker containers and extract the Sensu assets:
