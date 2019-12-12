@@ -4,11 +4,11 @@ export PLUGINS="check_disk,check_http,check_ntp,check_ntp_peer,check_ntp_time,ch
 export SENSU_GO_ASSET_VERSION=$(git describe --abbrev=0 --tags)
 
 mkdir assets/
-for PLATFORM in alpine debian centos;
+for PLATFORM in alpine debian centos6 centos7;
 do
   export SENSU_GO_ASSET_FILENAME="monitoring-plugins-${PLATFORM}_${SENSU_GO_ASSET_VERSION}_linux_amd64.tar.gz"
-  docker build --build-arg "PLUGINS=$PLUGINS" --build-arg "SENSU_GO_ASSET_VERSION=$SENSU_GO_ASSET_VERSION" -t monitoring-plugins-${PLATFORM}:$SENSU_GO_ASSET_VERSION -f Dockerfile.${PLATFORM} .
-  docker cp -L $(docker create monitoring-plugins-${PLATFORM}:$SENSU_GO_ASSET_VERSION true):/$SENSU_GO_ASSET_FILENAME ./assets/
+  docker build --no-cache --rm --build-arg "PLUGINS=$PLUGINS" --build-arg "SENSU_GO_ASSET_VERSION=$SENSU_GO_ASSET_VERSION" -t monitoring-plugins-${PLATFORM}:$SENSU_GO_ASSET_VERSION -f Dockerfile.${PLATFORM} .
+  docker cp -L $(docker create --rm monitoring-plugins-${PLATFORM}:$SENSU_GO_ASSET_VERSION true):/$SENSU_GO_ASSET_FILENAME ./assets/
 done;
 
 cd assets/
