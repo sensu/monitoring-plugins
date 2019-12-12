@@ -16,7 +16,7 @@ builds:
   sha_filename: "#{repo}_#{version}_sha512-checksums.txt"
   filter:
   - "entity.system.os == 'linux'"
-  - "entity.system.platform == 'centos'"
+  - "entity.system.platform_family == 'rhel'"
   - "entity.system.platform_version.split('.')[0] == '6'"
   - "entity.system.arch == 'amd64'"
 
@@ -26,7 +26,7 @@ builds:
   sha_filename: "#{repo}_#{version}_sha512-checksums.txt"
   filter:
   - "entity.system.os == 'linux'"
-  - "entity.system.platform == 'centos'"
+  - "entity.system.platform_family == 'rhel'"
   - "entity.system.platform_version.split('.')[0] == '7'"
   - "entity.system.arch == 'amd64'"
 
@@ -36,5 +36,5 @@ builds:
   sha_filename: "#{repo}_#{version}_sha512-checksums.txt"
   filter:
   - "entity.system.os == 'linux'"
-  - "entity.system.platform == 'debian'"
+  - "entity.system.platform_family == 'debian'"
   - "entity.system.arch == 'amd64'"
