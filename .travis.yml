@@ -12,6 +12,7 @@ deploy:
 - provider: script
   script: ./travis-github-upload.sh
   cleanup: false 
+  skip_cleanup: true
   on:
     tags: true
     all_branches: true
