@@ -20,16 +20,6 @@ builds:
   - "entity.system.platform_version.split('.')[0] == '2'"
   - "entity.system.arch == 'amd64'"
 
-- platform: "amazon1"
-  arch: "amd64"
-  asset_filename: "monitoring-plugins-amazon_#{version}_linux_amd64.tar.gz"
-  sha_filename: "#{repo}_#{version}_sha512-checksums.txt"
-  filter:
-  - "entity.system.os == 'linux'"
-  - "entity.system.platform == 'amazon'"
-  - "entity.system.platform_version.split('.')[0] == '1'"
-  - "entity.system.arch == 'amd64'"
-
 - platform: "centos6"
   arch: "amd64"
   asset_filename: "monitoring-plugins-centos6_#{version}_linux_amd64.tar.gz"
