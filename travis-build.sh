@@ -41,7 +41,7 @@ if [ -d dist ]; then
     export SENSU_GO_ASSET_FILENAME="${REPO_NAME}-${platform}_${TAG}_linux_amd64.tar.gz"
     echo "Building for Platform: $platform using Dockfile.${platform} ${SENSU_GO_ASSET_FILENAME}"	  
     docker build --no-cache --rm --build-arg "PLUGINS=$PLUGINS" --build-arg "SENSU_GO_ASSET_VERSION=${TAG}" -t ${REPO_NAME}-${platform}:$TAG -f Dockerfile.${platform} .
-  docker cp -L $(docker create --rm ${REPO_NAME}-${platform}:${TAG} true):/$SENSU_GO_ASSET_FILENAME ./dist/
+    docker cp -L $(docker create --rm ${REPO_NAME}-${platform}:${TAG} true):/$SENSU_GO_ASSET_FILENAME ./dist/
   else
     echo "Skipping for Platform: $platform missing Dockfile.${platform}"	  
   fi 	  
