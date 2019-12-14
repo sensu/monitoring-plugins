@@ -1,0 +1,18 @@
+language: c
+compiler:
+- clang
+- gcc
+services:
+- docker
+script:
+- travis-build.sh
+before_deploy:
+- bash -c "[ ! -d bonsai/ ] && git clone https://github.com/sensu/sensu-go-bonsai-asset.git bonsai || echo 'bonsai/ exists, skipping git clone'"
+deploy:
+- provider: script
+  script: bonsai/ruby-runtime/travis-build-ruby-plugin-assets.sh sensu-plugins-disk-checks
+  skip_cleanup: true
+  on:
+    tags: true
+    all_branches: true
+  
