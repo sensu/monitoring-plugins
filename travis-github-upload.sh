@@ -19,8 +19,6 @@ CURRENT_COMMIT=$(git rev-parse HEAD)
 GIT_REPO="https://github.com/${TRAVIS_REPO_SLUG}.git"
 GIT_REF=${TRAVIS_COMMIT}
 
-echo "Platforms: ${platforms[@]}"
-
 if [ -d dist ]; then
   # Generate the sha512sum for all the assets
   files=$( ls dist/*.tar.gz )
@@ -40,8 +38,11 @@ if [ -d dist ]; then
     fi
   done 
   file=$(basename "${files[0]}")
-  IFS=_ read -r package leftover <<< "$file"
-  unset leftover
+
+  #  JDS Commenting out the automaatic package logic here for now
+  #IFS=_ read -r package leftover <<< "$file"
+  #unset leftover
+  package="monitoring-plugins"
   if [ -n "$package" ]; then
     echo "Generating sha512sum for ${package}"
     cd dist || exit
