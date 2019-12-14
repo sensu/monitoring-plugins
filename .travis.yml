@@ -10,7 +10,7 @@ before_deploy:
   bonsai || echo 'bonsai/ exists, skipping git clone'"
 deploy:
 - provider: script
-  script: bonsai/ruby-runtime/travis-build-ruby-plugin-assets.sh sensu-plugins-disk-checks
+  script: ./travis-github-upload.sh
   cleanup: false 
   on:
     tags: true

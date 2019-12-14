@@ -45,57 +45,7 @@ if [ -d dist ]; then
   else
     echo "Skipping for Platform: $platform missing Dockfile.${platform}"	  
   fi 	  
-  #docker build --build-arg "ASSET_GEM=${GEM_NAME}" --build-arg "GIT_REPO=${GIT_REPO}"  --build-arg "GIT_REF=${GIT_REF}" -t ruby-plugin-${platform} -f "${WDIR}/ruby-runtime/Dockerfile.${platform}" .
-  #docker cp $(docker create --rm ruby-plugin-${platform}:latest sleep 0):/${GEM_NAME}.tar.gz ./dist/${GEM_NAME}_${TAG}_${platform}_linux_amd64.tar.gz
   done
-
-  # Generate the sha512sum for all the assets
-  files=$( ls dist/*.tar.gz )
-  echo $files
-  for filename in $files; do
-    if [[ "$TRAVIS_TAG" ]]; then
-      if [[ "$GITHUB_TOKEN" ]]; then
-        if [[ "$TRAVIS_REPO_SLUG" ]]; then
-          echo "upload $filename"
-          ${WDIR}/github-release-upload.sh github_api_token=$GITHUB_TOKEN repo_slug="$TRAVIS_REPO_SLUG" tag="${TRAVIS_TAG}" filename="$filename"
-        else
-	  echo "TRAVIS_REPO_SLUG unset, skipping upload of $filename"      
-	fi	 
-      else
-	echo "GITUB_TOKEN unset, skipping upload of $filename"      
-      fi	
-    fi
-  done 
-  file=$(basename "${files[0]}")
-  IFS=_ read -r package leftover <<< "$file"
-  unset leftover
-  if [ -n "$package" ]; then
-    echo "Generating sha512sum for ${package}"
-    cd dist || exit
-    sha512_file="${package}_${TAG}_sha512-checksums.txt"
-    #echo "${sha512_file}" > sha512_file
-    echo "sha512_file: ${sha512_file}"
-    sha512sum ./*.tar.gz > "${sha512_file}"
-    echo ""
-    cat "${sha512_file}"
-    cd ..
-    if [[ "$TRAVIS_TAG" ]]; then
-      if [[ "$GITHUB_TOKEN" ]]; then
-        echo "upload ${sha512_file}"
-        ${WDIR}/github-release-upload.sh github_api_token=$GITHUB_TOKEN repo_slug="$TRAVIS_REPO_SLUG" tag="${TRAVIS_TAG}" filename="dist/${sha512_file}"
-      else
-	echo "GITUB_TOKEN unset, skipping upload of ${sha512_file}"      
-      fi
-    fi
-  fi
-  if [[ "$TRAVIS_TAG" ]]; then
-    if [[ "$GITHUB_TOKEN" ]]; then
-      if [[ "$TRAVIS_REPO_SLUG" ]]; then
-        #Generate github release edit event 
-        ${WDIR}/github-release-event.sh github_api_token=$GITHUB_TOKEN repo_slug="$TRAVIS_REPO_SLUG" tag="${TRAVIS_TAG}"
-      fi
-    fi
-  fi  
 else
   echo "error dist directory is missing"
 fi
