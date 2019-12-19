@@ -1,12 +1,12 @@
-FROM amazonlinux:1 as builder
+FROM ubuntu:18.04 as builder
 
-ARG SENSU_GO_ASSET_NAME="monitoring-plugins-amazon1"
+ARG SENSU_GO_ASSET_NAME="monitoring-plugins-ubuntu1804"
 ARG SENSU_GO_ASSET_VERSION="2.2.0"
 ARG PLUGINS="check_http"
 
 ADD create-sensu-asset /usr/bin/create-sensu-asset
 
-WORKDIR /usr/lib64/nagios/plugins/
+WORKDIR /usr/lib/nagios/plugins/
 
-RUN yum-config-manager --enable epel && yum install -y which tar nagios-plugins-all
+RUN apt-get update && apt-get install -y monitoring-plugins-basic
 RUN create-sensu-asset -a $SENSU_GO_ASSET_NAME -b $PLUGINS -v $SENSU_GO_ASSET_VERSION -o /
