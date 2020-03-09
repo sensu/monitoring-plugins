@@ -1,6 +1,6 @@
-FROM debian:stretch as builder
+FROM debian:jessie as builder
 
-ARG SENSU_GO_ASSET_NAME="monitoring-plugins-debian"
+ARG SENSU_GO_ASSET_NAME="monitoring-plugins-debian8"
 ARG SENSU_GO_ASSET_VERSION="2.2.0"
 ARG PLUGINS="check_http"
 

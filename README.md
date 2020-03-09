@@ -9,9 +9,7 @@ creating a Sensu Go Asset containing the C plugins.
 
 ## Goal
 
-The goal of this project is to provide Sensu Go Assets for CentOS Linux (6 and 7), Debian
-Linux, and Alpine Linux containing all of the plugins from the Monitoring
-Plugins project.
+The goal of this project is to provide Sensu Go Assets for CentOS/RHEL Linux (6, 7, and 8), Debian Linux (8, 9, and 10), Ubuntu Linux (16.04 and 18.04), and Alpine Linux containing all of the plugins from the Monitoring Plugins project.
 
 ### Current Status
 
