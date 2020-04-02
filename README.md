@@ -44,9 +44,9 @@ Several plugins, though compiled binaries, require that certain commands be avai
 
 Examples (not exhaustive):
 
-* check_snmp requires snmpget
-* check_procs requires ps
-* check_dns requires nslookup
+* `check_snmp` requires `snmpget`
+* `check_procs` requires `ps`
+* `check_dns` requires `nslookup`
 
 ## Build
 
