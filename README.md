@@ -1,9 +1,11 @@
+[![Sensu Bonsai Asset](https://img.shields.io/badge/Bonsai-Download%20Me-brightgreen.svg?colorB=89C967&logo=sensu)](https://bonsai.sensu.io/assets/sensu/monitoring-plugins)
+[![Build Status](https://travis-ci.org/sensu/monitoring-plugins.svg?branch=master)](https://travis-ci.org/sensu/monitoring-plugins)
 # Sensu Assets: Monitoring Plugins
 
 ## Overview
 
 An attempt at packaging individual C plugins from the excellent Monitoring
-Plugins project (https://monitoring-plugins.org)[1] in the [Sensu Go][2]
+Plugins project [https://monitoring-plugins.org][1] in the [Sensu Go][2]
 [Asset][3] format. The goal of the project is to provide a simple workflow for
 creating a Sensu Go Asset containing the C plugins.
 
@@ -47,6 +49,18 @@ Examples (not exhaustive):
 * `check_snmp` requires `snmpget`
 * `check_procs` requires `ps`
 * `check_dns` requires `nslookup`
+
+## Configuration
+### Sensu Go
+#### Asset registration
+
+Assets are the best way to make use of this plugin. If you're not using an asset, please
+consider doing so! If you're using sensuctl 5.13 or later, you can use the following
+command to add the asset:
+
+`sensuctl asset add sensu/monitoring-plugins`
+
+If you're using an earlier version of sensuctl, you can download the asset definition from [this project's Bonsai Asset Index page](https://bonsai.sensu.io/assets/sensu/monitoring-plugins).
 
 ## Build
 
