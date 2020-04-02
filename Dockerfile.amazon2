@@ -6,7 +6,17 @@ ARG PLUGINS="check_http"
 
 ADD create-sensu-asset /usr/bin/create-sensu-asset
 
-WORKDIR /usr/lib64/nagios/plugins/
+WORKDIR /
 
-RUN amazon-linux-extras install -y epel && yum install -y which tar nagios-plugins-all
+RUN yum groupinstall -y "Development Tools" && \
+    yum install -y curl expat-devel openssl openssl-devel net-snmp-utils bind-utils which procps && \
+    curl -s -L -O https://www.monitoring-plugins.org/download/monitoring-plugins-2.2.tar.gz && \
+    tar xzf monitoring-plugins-2.2.tar.gz && \
+    cd monitoring-plugins-2.2 && \
+    ./configure --prefix=/usr --libexecdir=/usr/lib/monitoring-plugins && \
+    make && \
+    make install
+
+WORKDIR /usr/lib/monitoring-plugins/
+
 RUN create-sensu-asset -a $SENSU_GO_ASSET_NAME -b $PLUGINS -v $SENSU_GO_ASSET_VERSION -o /

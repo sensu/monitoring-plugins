@@ -9,7 +9,10 @@ creating a Sensu Go Asset containing the C plugins.
 
 ## Goal
 
-The goal of this project is to provide Sensu Go Assets for CentOS/RHEL Linux (6, 7, and 8), Debian Linux (8, 9, and 10), Ubuntu Linux (16.04 and 18.04), and Alpine Linux containing all of the plugins from the Monitoring Plugins project.
+The goal of this project is to provide Sensu Go Assets for CentOS/RHEL Linux
+(6, 7, and 8), Debian Linux (8, 9, and 10), Ubuntu Linux (16.04 and 18.04),
+Amazon Linux (1 and 2), and Alpine Linux containing a good subset of the
+plugins from the Monitoring Plugins project.
 
 ### Current Status
 
@@ -18,28 +21,32 @@ Currently, This project will attempt to provide support for the following plugin
 - `check_disk`
 - `check_dns`
 - `check_http`
+- `check_load`
+- `check_log`
+- `check_mailq`
 - `check_ntp`
 - `check_ntp_peer`
 - `check_ntp_time`
 - `check_ping`
 - `check_procs`
 - `check_smtp`
+- `check_snmp`
 - `check_ssh`
 - `check_swap`
 - `check_tcp`
 - `check_time`
 - `check_users`
 
-### Next Steps
 
-In no particular order:
+### Caveats
 
-- Add support for platform-specific exclusions in the build script (i.e. if
-  `check_snmp` is available for CentOS and Debian, but not for Alpine, just skip
-  it on Alpine?)
-- Build the plugins from scratch instead of installing the distribution packages
-  (which are inconsistent between Alpine, Debian, and CentOS)
-- Hook up a CI pipeline to automate the builds
+Several plugins, though compiled binaries, require that certain commands be available from the OS.
+
+Examples (not exhaustive):
+
+* check_snmp requires snmpget
+* check_procs requires ps
+* check_dns requires nslookup
 
 ## Build
 
