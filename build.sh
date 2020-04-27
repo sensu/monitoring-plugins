@@ -4,7 +4,7 @@ export PLUGINS="check_disk,check_dns,check_http,check_load,check_log,check_mailq
 export SENSU_GO_ASSET_VERSION=$(git describe --abbrev=0 --tags)
 
 mkdir assets/
-for PLATFORM in alpine amazon1 amazon2 debian8 debian9 debian10 centos6 centos7 centos8 ubuntu1604 ubuntu1804;
+for PLATFORM in alpine amazon1 amazon2 debian8 debian9 debian10 centos6 centos7 centos8 ubuntu1404 ubuntu1604 ubuntu1804;
 do
   export SENSU_GO_ASSET_FILENAME="monitoring-plugins-${PLATFORM}_${SENSU_GO_ASSET_VERSION}_linux_amd64.tar.gz"
   docker build --no-cache --rm --build-arg "PLUGINS=$PLUGINS" --build-arg "SENSU_GO_ASSET_VERSION=$SENSU_GO_ASSET_VERSION" -t monitoring-plugins-${PLATFORM}:$SENSU_GO_ASSET_VERSION -f Dockerfile.${PLATFORM} .
