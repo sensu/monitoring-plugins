@@ -122,6 +122,16 @@ builds:
   - "entity.system.platform_version.split('.')[0] == '18'"
   - "entity.system.arch == 'amd64'"
 
+- platform: "ubuntu2004"
+  arch: "amd64"
+  asset_filename: "monitoring-plugins-ubuntu2004_#{version}_linux_amd64.tar.gz"
+  sha_filename: "#{repo}_#{version}_sha512-checksums.txt"
+  filter:
+  - "entity.system.os == 'linux'"
+  - "entity.system.platform == 'ubuntu'"
+  - "entity.system.platform_version.split('.')[0] == '20'"
+  - "entity.system.arch == 'amd64'"
+
 - platform: "xcp-ng8"
   arch: "amd64"
   asset_filename: "monitoring-plugins-centos7_#{version}_linux_amd64.tar.gz"
