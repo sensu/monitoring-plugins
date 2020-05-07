@@ -25,7 +25,6 @@ Currently, This project will attempt to provide support for the following plugin
 - `check_http`
 - `check_load`
 - `check_log`
-- `check_mailq`
 - `check_ntp`
 - `check_ntp_peer`
 - `check_ntp_time`
