@@ -6,7 +6,7 @@
 # Hardwiring repo-name for now, untile the Dockerfile logic is abstracted/tested to use name as passed to docker as build arg
 REPO_NAME="monitoring-plugins"
 
-export PLUGINS="check_disk,check_dns,check_http,check_load,check_log,check_mailq,check_ntp,check_ntp_peer,check_ntp_time,check_ping,check_procs,check_smtp,check_snmp,check_ssh,check_swap,check_tcp,check_time,check_users"
+export PLUGINS="check_disk,check_dns,check_http,check_load,check_log,check_ntp,check_ntp_peer,check_ntp_time,check_ping,check_procs,check_smtp,check_snmp,check_ssh,check_swap,check_tcp,check_time,check_users,utils.sh"
 
 [[ -z "$WDIR" ]] && { echo "WDIR is empty using bonsai/" ; WDIR="bonsai/"; }
 
