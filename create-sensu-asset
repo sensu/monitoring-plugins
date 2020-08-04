@@ -3,6 +3,8 @@
 WORK_DIR=/tmp/sensu-assets
 BUILD_DIR=$WORK_DIR/build
 OUTPUT_DIR=$PWD
+GREP_EXCLUDE='(ld.so|ld-linux-x86-64.so|libBrokenLocale.so|libSegFault.so|libanl.so|libc.so|libdl.so|libm.so|libmvec.so|libnss_compat.so|libnss_dns.so|libnss_files.so|libpthread.so|libresolv.so|librt.so|libthread_db.so|libutil.so|vdso.so)'
+
 mkdir -p $BUILD_DIR
 
 # Read arguments
@@ -108,7 +110,7 @@ if [[ -n $BINS ]]; then
       echo "Copying: $BINARY into the asset bin/$BINARY"
       cp $BINARY $PKG_DIR/bin/;
       if [[ $(which ldd) ]]; then
-        LINKED_LIBRARIES=($(ldd $BINARY | grep "=>" | grep -v "vdso.so.1" | awk '{print $3}'))
+        LINKED_LIBRARIES=($(ldd $BINARY | grep "=>" | egrep -v "${GREP_EXCLUDE}" | awk '{print $3}'))
         for INDEX in "${!LINKED_LIBRARIES[@]}"
         do
           LINKED_LIBRARY="${LINKED_LIBRARIES[$INDEX]}"
