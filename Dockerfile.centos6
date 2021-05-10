@@ -10,6 +10,8 @@ WORKDIR /usr/lib64/nagios/plugins/
 
 WORKDIR /
 
+RUN curl https://www.getpagespeed.com/files/centos6-eol.repo --output /etc/yum.repos.d/CentOS-Base.repo
+
 RUN yum groupinstall -y "Development Tools" && yum install -y curl expat-devel openssl openssl-devel net-snmp-utils bind-utils && \
     curl -s -L -O https://www.monitoring-plugins.org/download/monitoring-plugins-2.2.tar.gz && \
     tar xzf monitoring-plugins-2.2.tar.gz && \
