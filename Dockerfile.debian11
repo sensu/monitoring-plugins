@@ -1,6 +1,6 @@
-FROM debian:stretch as builder
+FROM debian:bullseye as builder
 
-ARG SENSU_GO_ASSET_NAME="monitoring-plugins-debian9"
+ARG SENSU_GO_ASSET_NAME="monitoring-plugins-debian11"
 ARG SENSU_GO_ASSET_VERSION="2.7.0"
 ARG PLUGINS="check_http"
 
