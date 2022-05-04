@@ -1,12 +1,14 @@
-FROM debian:stretch as builder
+FROM ubuntu:22.04 as builder
 
-ARG SENSU_GO_ASSET_NAME="monitoring-plugins-debian9"
+ARG SENSU_GO_ASSET_NAME="monitoring-plugins-ubuntu2004"
 ARG SENSU_GO_ASSET_VERSION="2.7.0"
 ARG PLUGINS="check_http"
 
 ADD create-sensu-asset /usr/bin/create-sensu-asset
 
 WORKDIR /
+
+ENV DEBIAN_FRONTEND noninteractive
 
 RUN apt-get update && \
     apt-get install -y build-essential curl libexpat1-dev openssl libssl-dev libz-dev snmp dnsutils procps && \
