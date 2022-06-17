@@ -16,6 +16,11 @@ jobs:
           TRAVIS_REPO_SLUG: ${{github.repository}}
           TRAVIS_TAG: ${{github.ref_name}}
           FULL_PRUNE: 1
+    - name: Sha512sum
+      run: sha512sum ./dist/*.tar.gz > "./dist/monitoring-plugins_${TRAVIS_TAG}_sha512-checksums.txt"      
+      env:
+          TRAVIS_REPO_SLUG: ${{github.repository}}
+          TRAVIS_TAG: ${{github.ref_name}}
     - name: Upload binaries to release
       uses: svenstaro/upload-release-action@v2
       with:
