@@ -18,7 +18,7 @@ export PLUGINS="check_disk,check_dns,check_http,check_load,check_log,check_ntp,c
 [[ -z "$GITHUB_TOKEN" ]] && { echo "GITHUB_TOKEN is empty, upload disabled" ; }
 [[ -z "$TRAVIS_REPO_SLUG" ]] && { echo "TRAVIS_REPO_SLUG is empty"; exit 1; }
 if [[ -z "$1" ]]; then 
-  echo "Parameter 1, PLATFORMS is empty, using default set" ; platforms=( alpine alpine3.8 debian8 debian9 debian10 centos8 centos7 centos6 amazon1 amazon2 ubuntu1404 ubuntu1604 ubuntu1804 ubuntu2004 ); 
+  echo "Parameter 1, PLATFORMS is empty, using default set" ; platforms=( alpine alpine3.8 debian8 debian9 debian10 debian11 centos8 centos7 centos6 amazon1 amazon2 ubuntu1404 ubuntu1604 ubuntu1804 ubuntu2004 ubuntu2204 ); 
 else
   IFS=', ' read -r -a platforms <<< "$1"
 fi
@@ -42,6 +42,11 @@ if [ -d dist ]; then
     echo "Building for Platform: $platform using Dockfile.${platform} ${SENSU_GO_ASSET_FILENAME}"	  
     docker build --no-cache --rm --build-arg "PLUGINS=$PLUGINS" --build-arg "SENSU_GO_ASSET_VERSION=${TAG}" -t ${REPO_NAME}-${platform}:$TAG -f Dockerfile.${platform} .
     docker cp -L $(docker create --rm ${REPO_NAME}-${platform}:${TAG} true):/$SENSU_GO_ASSET_FILENAME ./dist/
+    if [ -z ${FULL_PRUNE+x} ]; then 
+            echo "FULL_PRUNE unset, skipping docker prune"
+    else 
+            docker system prune -a -f
+    fi
   else
     echo "Skipping for Platform: $platform missing Dockfile.${platform}"	  
   fi 	  
