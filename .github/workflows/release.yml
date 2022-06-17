@@ -11,7 +11,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Build
-      run: mkdir dist || echo "${TRAVIS_REPO_SLUG}-${TRAVIS_TAG}-${FULL_PRUNE}" > dist/test.txt
+      run: mkdir dist && echo "${TRAVIS_REPO_SLUG}-${TRAVIS_TAG}-${FULL_PRUNE}" > dist/test.txt
       env:
           TRAVIS_REPO_SLUG: ${{github.repository}}
           TRAVIS_TAG: ${{github.ref_name}}
