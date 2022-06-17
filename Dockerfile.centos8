@@ -8,8 +8,10 @@ ADD create-sensu-asset /usr/bin/create-sensu-asset
 
 WORKDIR /
 
-RUN rm -rf /var/cache/dnf && \
-    dnf -y upgrade && \
+RUN rm -rf /var/cache/dnf
+RUN dnf -y --disablerepo '*' --enablerepo=extras swap centos-linux-repos centos-stream-repos
+RUN dnf -y distro-sync
+RUN dnf -y upgrade && \
     dnf groupinstall -y "Development Tools" && \
     dnf install -y curl expat-devel openssl openssl-devel net-snmp-utils bind-utils which procps && \
     curl -s -L -O https://www.monitoring-plugins.org/download/monitoring-plugins-2.3.1.tar.gz && \
