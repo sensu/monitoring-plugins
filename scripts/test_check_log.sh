@@ -1,6 +1,6 @@
 #/bin/sh
-echo "This is a test of the emergency broadcast system" > /build/test_log.txt
-check_log -F /build/test_log.txt -O /build/old_test_log.txt -q "This is a test" > stdout.txt 2>stderr.txt
+echo "This is a test of the emergency broadcast system" > /test_log.txt
+check_log -F /test_log.txt -O /old_test_log.txt -q "This is a test" > stdout.txt 2>stderr.txt
 
 retval=$?
 
@@ -8,6 +8,7 @@ error=$(cat stderr.txt)
 if [ $retval -ne 0 ]
 then
   cat stdout.txt
+  
 fi
 if [ ! -z "$error" ]
 then
