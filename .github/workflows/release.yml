@@ -3,7 +3,6 @@ on:
   push:
     tags:
       - '*'
-
 jobs:
   build:
     name: Publish binaries
@@ -11,21 +10,15 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Build
-      run: ./travis-build.sh
+      run: ./scripts/build_and_validate.sh
       env:
-          TRAVIS_REPO_SLUG: ${{github.repository}}
-          TRAVIS_TAG: ${{github.ref_name}}
-          FULL_PRUNE: 1
-    - name: Sha512sum
-      run: cd dist && sha512sum ./*.tar.gz > "./monitoring-plugins_${TRAVIS_TAG}_sha512-checksums.txt"      
-      env:
-          TRAVIS_REPO_SLUG: ${{github.repository}}
-          TRAVIS_TAG: ${{github.ref_name}}
+          ASSET_VERSION: ${{github.ref_name}}
+          ASSET_REPONAME: monitoring-plugins
     - name: Upload binaries to release
       uses: svenstaro/upload-release-action@v2
       with:
         repo_token: ${{ secrets.GITHUB_TOKEN }}
-        file: dist/*
+        file: assets/*
         tag: ${{ github.ref_name }}
         overwrite: true
         file_glob: true
