@@ -10,6 +10,6 @@ jobs:
     - name: Build and Validate
       run: ./scripts/build_and_validate.sh
       env:
-          ASSET_VERSION: ${{github.ref_name}}
+          ASSET_VERSION: ${{github.sha}}
           ASSET_REPONAME: monitoring-plugins
 
