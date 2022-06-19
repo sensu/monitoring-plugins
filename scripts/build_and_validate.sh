@@ -16,7 +16,6 @@ if [ -z "$ASSET_REPONAME" ]
 then
   export ASSET_REPONAME=monitoring-plugins
 fi
-
 if [ -z "$PLATFORMS" ]
 then
   OLD_DIR=$(pwd)
@@ -24,22 +23,48 @@ then
   PLATFORMS=$(find . -maxdepth 1 -mindepth 1 -type d)
   cd $OLD_DIR
 fi
-echo "PLATFOMRS: $PLATFORMS"
+echo "ENABLED PLATFOMRS: $PLATFORMS"
 
 mkdir -p assets/
 for platform in $PLATFORMS;
 do
   p=$(basename $platform)
   ASSET_FILENAME="${ASSET_REPONAME}-${p}_${ASSET_VERSION}.tar.gz"
-  echo "Building: $ASSET_FILENAME"
+  [ ! -d "./builds/enabled/${p}" ] && echo "Directory /builds/enabled/${p} does not exist" && exit 1
   if [ -f "./assets/$ASSET_FILENAME" ]; then
     echo "File ${ASSET_FILENAME} already exists in assets dir, skippinng this build"
-    continue
+  else
+    echo "Building: $ASSET_FILENAME"
+    docker build --no-cache --rm --build-arg "PLUGINS=$PLUGINS" --build-arg "SENSU_GO_ASSET_VERSION=$ASSET_VERSION" -t ${ASSET_REPONAME}-${p}:$ASSET_VERSION -f builds/enabled/${p}/Dockerfile .
+    docker cp -L $(docker create --rm ${ASSET+REPONAME}-${p}:$ASSET_VERSION true):/$ASSET_FILENAME ./assets/
+    [ ! -f "./assets/$i{ASSET_FILENAME}" ] && echo "Error: Asset file ${ASSET_FILENAME} missing from assets directory!" && exit 1 
   fi
-  [ ! -d "./builds/enabled/${p}" ] && echo "Directory /builds/enabled/${p} does not exist" && exit 1
-  docker build --no-cache --rm --build-arg "PLUGINS=$PLUGINS" --build-arg "SENSU_GO_ASSET_VERSION=$ASSET_VERSION" -t ${ASSET_REPONAME}-${p}:$ASSET_VERSION -f builds/enabled/${p}/Dockerfile .
-  docker cp -L $(docker create --rm ${ASSET+REPONAME}-${p}:$ASSET_VERSION true):/$ASSET_FILENAME ./assets/
-  [ ! -f "./assets/$i{ASSET_FILENAME}" ] && echo "Error: Asset file ${ASSET_FILENAME} missing from assets directory!" && exit 1 
+  unset TEST_PLATFORMS
+  if [ -f "./builds/enabled/${p}/test_platforms" ]; then
+    TEST_PLATFORMS=$(cat ./builds/enabled/${p}/test_platforms)
+  fi
+  unset TEST_PLUGINS
+  if [ -f "./builds/enabled/${p}/test_plugins" ]; then
+    TEST_PLUGINS=$(cat ./builds/enabled/${p}/test_plugins)
+  else
+    TEST_PLUGINS=${PLUGINS}
+  fi
+  if [ -z "$TEST_PLATFORMS" ]
+  then
+    echo "Skipping platform tests: TEST_PLATFORMS empty"
+  else
+    test_arr=($TEST_PLATFORMS)
+    for test_platform in "${test_arr[@]}"; do
+      echo "Test: ${test_platform}"
+     docker run -e platform=${p} -e test_platform=${test_platform} -e plugins=${TEST_PLUGINS} -e asset_filename=${ASSET_FILENAME} -v "$PWD/scripts/:/scripts" -v "$PWD/assets:/dist" ${test_platform} /scripts/test.sh
+      retval=$?
+      if [ $retval -ne 0 ]; then
+        echo "!!! Error testing ${asset_filename} on ${test_platform}"
+        exit $retval
+      fi
+    done
+  fi  
+
 done
 
 echo -e "\nDone Building, ./assets directory contains:"
