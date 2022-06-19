@@ -10,11 +10,11 @@ then
 fi
 if [ -z "$ASSET_VERSION" ]
 then
-  export ASSET_VERSION=$(git describe --abbrev=0 --tags)
+  ASSET_VERSION=$(git describe --abbrev=0 --tags)
 fi
 if [ -z "$ASSET_REPONAME" ]
 then
-  export ASSET_REPONAME=monitoring-plugins
+  ASSET_REPONAME=monitoring-plugins
 fi
 if [ -z "$PLATFORMS" ]
 then
@@ -36,8 +36,8 @@ do
   else
     echo "Building: $ASSET_FILENAME"
     docker build --no-cache --rm --build-arg "PLUGINS=$PLUGINS" --build-arg "SENSU_GO_ASSET_VERSION=$ASSET_VERSION" -t ${ASSET_REPONAME}-${p}:$ASSET_VERSION -f builds/enabled/${p}/Dockerfile .
-    docker cp -L $(docker create --rm ${ASSET+REPONAME}-${p}:$ASSET_VERSION true):/$ASSET_FILENAME ./assets/
-    [ ! -f "./assets/$i{ASSET_FILENAME}" ] && echo "Error: Asset file ${ASSET_FILENAME} missing from assets directory!" && exit 1 
+    docker cp -L $(docker create --rm ${ASSET_REPONAME}-${p}:$ASSET_VERSION true):/$ASSET_FILENAME ./assets/
+    [ ! -f "./assets/${ASSET_FILENAME}" ] && echo "Error: Asset file ${ASSET_FILENAME} missing from assets directory!" && exit 1 
   fi
   unset TEST_PLATFORMS
   if [ -f "./builds/enabled/${p}/test_platforms" ]; then
@@ -51,12 +51,16 @@ do
   fi
   if [ -z "$TEST_PLATFORMS" ]
   then
-    echo "Skipping platform tests: TEST_PLATFORMS empty"
+    echo -e "\nSkipping platform tests: TEST_PLATFORMS empty"
   else
+    echo -e "\nPerforming Cross platform tests\n"
     test_arr=($TEST_PLATFORMS)
+    mkdir -p ./dist/${p}
+    cd ./dist/${p}
+    tar xzf $OLD_DIR/assets/$ASSET_FILENAME
+    cd $OLD_DIR
     for test_platform in "${test_arr[@]}"; do
-      echo "Test: ${test_platform}"
-     docker run -e platform=${p} -e test_platform=${test_platform} -e plugins=${TEST_PLUGINS} -e asset_filename=${ASSET_FILENAME} -v "$PWD/scripts/:/scripts" -v "$PWD/assets:/dist" ${test_platform} /scripts/test.sh
+      docker run -e platform=${p} -e test_platform=${test_platform} -e plugins=${TEST_PLUGINS} -e asset_filename=${ASSET_FILENAME} -v "$PWD/scripts/:/scripts"  -v "$PWD//dist/${p}:/build" ${test_platform} /scripts/test.sh
       retval=$?
       if [ $retval -ne 0 ]; then
         echo "!!! Error testing ${asset_filename} on ${test_platform}"
