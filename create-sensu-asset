@@ -177,7 +177,7 @@ if [[ $ASSET_ARCH = "_x86_64" ]]; then
   export ASSET_ARCH="_amd64"
 fi
 
-ASSET="${OUTPUT_DIR}/${ASSET_NAME}${ASSET_VERSION}${ASSET_OS}${ASSET_ARCH}.tar.gz"
+ASSET="${OUTPUT_DIR}/${ASSET_NAME}${ASSET_OS}${ASSET_ARCH}${ASSET_VERSION}.tar.gz"
 echo "";
 echo "Packaging contents of ${PKG_DIR} into ${ASSET}";
 echo "";

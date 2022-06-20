@@ -1,0 +1,24 @@
+FROM centos:6 as builder
+
+ARG SENSU_GO_ASSET_NAME="monitoring-plugins-centos6"
+ARG SENSU_GO_ASSET_VERSION="2.7.0"
+ARG PLUGINS="check_http"
+
+ADD create-sensu-asset /usr/bin/create-sensu-asset
+
+WORKDIR /usr/lib64/nagios/plugins/
+
+WORKDIR /
+
+RUN curl https://www.getpagespeed.com/files/centos6-eol.repo --output /etc/yum.repos.d/CentOS-Base.repo
+RUN yum groupinstall -y "Development Tools" && yum install -y curl expat-devel openssl openssl-devel net-snmp-utils bind-utils && \
+    curl -s -L -O https://www.monitoring-plugins.org/download/monitoring-plugins-2.3.1.tar.gz && \
+    tar xzf monitoring-plugins-2.3.1.tar.gz && \
+    cd monitoring-plugins-2.3.1 && \
+    ./configure --prefix=/usr --libexecdir=/usr/lib/monitoring-plugins && \
+    make && \
+    make install
+
+WORKDIR /usr/lib/monitoring-plugins/
+
+RUN create-sensu-asset -a $SENSU_GO_ASSET_NAME -b $PLUGINS -v $SENSU_GO_ASSET_VERSION -o /

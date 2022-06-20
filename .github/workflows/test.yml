@@ -1,0 +1,15 @@
+name: Test
+on: [push]
+
+jobs:
+  build:
+    name: Build and Validate
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Build and Validate
+      run: ./scripts/build_and_validate.sh
+      env:
+          ASSET_VERSION: ${{github.sha}}
+          ASSET_REPONAME: monitoring-plugins
+

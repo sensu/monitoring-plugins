@@ -1,0 +1,21 @@
+FROM alpine:latest as builder
+
+ARG SENSU_GO_ASSET_NAME="monitoring-plugins-alpine"
+ARG SENSU_GO_ASSET_VERSION="2.7.0"
+ARG PLUGINS="check_http"
+
+ADD create-sensu-asset /usr/bin/create-sensu-asset
+
+WORKDIR /
+
+RUN apk --update add bash coreutils libintl curl gcc g++ make openssl-dev net-snmp-tools linux-headers procps && \
+    curl -s -L -O https://www.monitoring-plugins.org/download/monitoring-plugins-2.3.1.tar.gz && \
+    tar xzf monitoring-plugins-2.3.1.tar.gz && \
+    cd monitoring-plugins-2.3.1 && \
+    ./configure --prefix=/usr --libexecdir=/usr/lib/monitoring-plugins && \
+    make && \
+    make install
+
+WORKDIR /usr/lib/monitoring-plugins/
+
+RUN create-sensu-asset -a $SENSU_GO_ASSET_NAME -b $PLUGINS -v $SENSU_GO_ASSET_VERSION -o /

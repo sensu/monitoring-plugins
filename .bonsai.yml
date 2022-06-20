@@ -3,7 +3,7 @@ description: "#{repo}"
 builds:
 - platform: "alpine"
   arch: "amd64"
-  asset_filename: "monitoring-plugins-alpine_#{version}_linux_amd64.tar.gz"
+  asset_filename: "monitoring-plugins-alpine_linux_amd64_#{version}.tar.gz"
   sha_filename: "#{repo}_#{version}_sha512-checksums.txt"
   filter:
   - "entity.system.os == 'linux'"
@@ -12,7 +12,7 @@ builds:
 
 - platform: "amazon1"
   arch: "amd64"
-  asset_filename: "monitoring-plugins-amazon1_#{version}_linux_amd64.tar.gz"
+  asset_filename: "monitoring-plugins-debian8_linux_amd64_#{version}.tar.gz"
   sha_filename: "#{repo}_#{version}_sha512-checksums.txt"
   filter:
   - "entity.system.os == 'linux'"
@@ -24,7 +24,7 @@ builds:
 
 - platform: "amazon2"
   arch: "amd64"
-  asset_filename: "monitoring-plugins-amazon2_#{version}_linux_amd64.tar.gz"
+  asset_filename: "monitoring-plugins-debian8_linux_amd64_#{version}.tar.gz"
   sha_filename: "#{repo}_#{version}_sha512-checksums.txt"
   filter:
   - "entity.system.os == 'linux'"
@@ -34,7 +34,7 @@ builds:
 
 - platform: "centos6"
   arch: "amd64"
-  asset_filename: "monitoring-plugins-centos6_#{version}_linux_amd64.tar.gz"
+  asset_filename: "monitoring-plugins-centos6_linux_amd64_#{version}.tar.gz"
   sha_filename: "#{repo}_#{version}_sha512-checksums.txt"
   filter:
   - "entity.system.os == 'linux'"
@@ -44,7 +44,7 @@ builds:
 
 - platform: "centos7"
   arch: "amd64"
-  asset_filename: "monitoring-plugins-centos7_#{version}_linux_amd64.tar.gz"
+  asset_filename: "monitoring-plugins-debian8_linux_amd64_#{version}.tar.gz"
   sha_filename: "#{repo}_#{version}_sha512-checksums.txt"
   filter:
   - "entity.system.os == 'linux'"
@@ -54,7 +54,7 @@ builds:
 
 - platform: "centos8"
   arch: "amd64"
-  asset_filename: "monitoring-plugins-centos8_#{version}_linux_amd64.tar.gz"
+  asset_filename: "monitoring-plugins-debian8_linux_amd64_#{version}.tar.gz"
   sha_filename: "#{repo}_#{version}_sha512-checksums.txt"
   filter:
   - "entity.system.os == 'linux'"
@@ -64,7 +64,7 @@ builds:
 
 - platform: "debian8"
   arch: "amd64"
-  asset_filename: "monitoring-plugins-debian8_#{version}_linux_amd64.tar.gz"
+  asset_filename: "monitoring-plugins-debian8_linux_amd64_#{version}.tar.gz"
   sha_filename: "#{repo}_#{version}_sha512-checksums.txt"
   filter:
   - "entity.system.os == 'linux'"
@@ -74,7 +74,7 @@ builds:
 
 - platform: "debian9"
   arch: "amd64"
-  asset_filename: "monitoring-plugins-debian9_#{version}_linux_amd64.tar.gz"
+  asset_filename: "monitoring-plugins-debian8_linux_amd64_#{version}.tar.gz"
   sha_filename: "#{repo}_#{version}_sha512-checksums.txt"
   filter:
   - "entity.system.os == 'linux'"
@@ -84,7 +84,7 @@ builds:
 
 - platform: "debian10"
   arch: "amd64"
-  asset_filename: "monitoring-plugins-debian10_#{version}_linux_amd64.tar.gz"
+  asset_filename: "monitoring-plugins-debian8_linux_amd64_#{version}.tar.gz"
   sha_filename: "#{repo}_#{version}_sha512-checksums.txt"
   filter:
   - "entity.system.os == 'linux'"
@@ -94,7 +94,7 @@ builds:
 
 - platform: "debian11"
   arch: "amd64"
-  asset_filename: "monitoring-plugins-debian11_#{version}_linux_amd64.tar.gz"
+  asset_filename: "monitoring-plugins-debian8_linux_amd64_#{version}.tar.gz"
   sha_filename: "#{repo}_#{version}_sha512-checksums.txt"
   filter:
   - "entity.system.os == 'linux'"
@@ -104,7 +104,7 @@ builds:
 
 - platform: "ubuntu1404"
   arch: "amd64"
-  asset_filename: "monitoring-plugins-ubuntu1404_#{version}_linux_amd64.tar.gz"
+  asset_filename: "monitoring-plugins-debian8_linux_amd64_#{version}.tar.gz"
   sha_filename: "#{repo}_#{version}_sha512-checksums.txt"
   filter:
   - "entity.system.os == 'linux'"
@@ -114,7 +114,7 @@ builds:
 
 - platform: "ubuntu1604"
   arch: "amd64"
-  asset_filename: "monitoring-plugins-ubuntu1604_#{version}_linux_amd64.tar.gz"
+  asset_filename: "monitoring-plugins-debian8_linux_amd64_#{version}.tar.gz"
   sha_filename: "#{repo}_#{version}_sha512-checksums.txt"
   filter:
   - "entity.system.os == 'linux'"
@@ -124,7 +124,7 @@ builds:
 
 - platform: "ubuntu1804"
   arch: "amd64"
-  asset_filename: "monitoring-plugins-ubuntu1804_#{version}_linux_amd64.tar.gz"
+  asset_filename: "monitoring-plugins-debian8_linux_amd64_#{version}.tar.gz"
   sha_filename: "#{repo}_#{version}_sha512-checksums.txt"
   filter:
   - "entity.system.os == 'linux'"
@@ -134,7 +134,7 @@ builds:
 
 - platform: "ubuntu2004"
   arch: "amd64"
-  asset_filename: "monitoring-plugins-ubuntu2004_#{version}_linux_amd64.tar.gz"
+  asset_filename: "monitoring-plugins-debian8_linux_amd64_#{version}.tar.gz"
   sha_filename: "#{repo}_#{version}_sha512-checksums.txt"
   filter:
   - "entity.system.os == 'linux'"
@@ -144,7 +144,7 @@ builds:
 
 - platform: "ubuntu2204"
   arch: "amd64"
-  asset_filename: "monitoring-plugins-ubuntu2204_#{version}_linux_amd64.tar.gz"
+  asset_filename: "monitoring-plugins-debian8_linux_amd64_#{version}.tar.gz"
   sha_filename: "#{repo}_#{version}_sha512-checksums.txt"
   filter:
   - "entity.system.os == 'linux'"
@@ -154,7 +154,7 @@ builds:
 
 - platform: "xcp-ng8"
   arch: "amd64"
-  asset_filename: "monitoring-plugins-centos7_#{version}_linux_amd64.tar.gz"
+  asset_filename: "monitoring-plugins-debian8_linux_amd64_#{version}.tar.gz"
   sha_filename: "#{repo}_#{version}_sha512-checksums.txt"
   filter:
   - "entity.system.os == 'linux'"
