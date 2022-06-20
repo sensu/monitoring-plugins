@@ -16,8 +16,8 @@ export LD_LIBRARY_PATH="/build/lib:$LD_LIBRARY_PATH"
 export PATH="/build/bin/:$PATH"
 while IFS=',' read -ra tests; do
   for t in "${tests[@]}"; do
-    echo "      Running: /scripts/test_${t}.sh"
-    /scripts/test_${t}.sh
+    echo "      Running: /tests/test_${t}.sh"
+    /tests/test_${t}.sh
     retval=$?
     if [ $retval -ne 0 ]; then
         echo "!!! Test error: test_${t}.sh"

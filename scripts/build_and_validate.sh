@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 [ ! -d "./scripts" ] && echo "Directory ./scripts does not exist" && exit 1
+[ ! -d "./tests" ] && echo "Directory ./tests does not exist" && exit 1
 [ ! -d "./builds/enabled" ] && echo "Directory ./builds/enabled does not exist" && exit 1
 
 [ ! -f "./.bonsai.yml" ] && echo "File ./.bonsai.yml does not exist" && exit 1
@@ -60,7 +61,7 @@ do
     tar xzf $OLD_DIR/assets/$ASSET_FILENAME
     cd $OLD_DIR
     for test_platform in "${test_arr[@]}"; do
-      docker run -e platform=${p} -e test_platform=${test_platform} -e plugins=${TEST_PLUGINS} -e asset_filename=${ASSET_FILENAME} -v "$PWD/scripts/:/scripts"  -v "$PWD//dist/${p}:/build" ${test_platform} /scripts/test.sh
+      docker run -e platform=${p} -e test_platform=${test_platform} -e plugins=${TEST_PLUGINS} -e asset_filename=${ASSET_FILENAME} -v "$PWD/tests/:/tests" -v "$PWD/scripts/:/scripts"  -v "$PWD//dist/${p}:/build" ${test_platform} /scripts/test.sh
       retval=$?
       if [ $retval -ne 0 ]; then
         echo "!!! Error testing ${asset_filename} on ${test_platform}"
