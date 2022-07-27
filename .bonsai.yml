@@ -10,18 +10,6 @@ builds:
   - "entity.system.platform == 'alpine'"
   - "entity.system.arch == 'amd64'"
 
-- platform: "amazon1"
-  arch: "amd64"
-  asset_filename: "monitoring-plugins-amazon1_#{version}_linux_amd64.tar.gz"
-  sha_filename: "#{repo}_#{version}_sha512-checksums.txt"
-  filter:
-  - "entity.system.os == 'linux'"
-  - "entity.system.platform == 'amazon'"
-  # Amazon Linux 1 uses versions of the format YYYY.MM starting from 2011 and going until 2018
-  # thus we are matching if the YYYY portion of platform_version contains '201'
-  - "entity.system.platform_version.split('.')[0].indexOf('201') !== -1"
-  - "entity.system.arch == 'amd64'"
-
 - platform: "amazon2"
   arch: "amd64"
   asset_filename: "monitoring-plugins-amazon2_#{version}_linux_amd64.tar.gz"
@@ -32,14 +20,14 @@ builds:
   - "entity.system.platform_version == '2'"
   - "entity.system.arch == 'amd64'"
 
-- platform: "centos6"
+- platform: "amazon2022"
   arch: "amd64"
-  asset_filename: "monitoring-plugins-centos6_#{version}_linux_amd64.tar.gz"
+  asset_filename: "monitoring-plugins-amazon2_#{version}_linux_amd64.tar.gz"
   sha_filename: "#{repo}_#{version}_sha512-checksums.txt"
   filter:
   - "entity.system.os == 'linux'"
-  - "entity.system.platform_family == 'rhel'"
-  - "entity.system.platform_version.split('.')[0] == '6'"
+  - "entity.system.platform == 'amazon'"
+  - "entity.system.platform_version == '2022'"
   - "entity.system.arch == 'amd64'"
 
 - platform: "centos7"
@@ -62,26 +50,6 @@ builds:
   - "entity.system.platform_version.split('.')[0] == '8'"
   - "entity.system.arch == 'amd64'"
 
-- platform: "debian8"
-  arch: "amd64"
-  asset_filename: "monitoring-plugins-debian8_#{version}_linux_amd64.tar.gz"
-  sha_filename: "#{repo}_#{version}_sha512-checksums.txt"
-  filter:
-  - "entity.system.os == 'linux'"
-  - "entity.system.platform_family == 'debian'"
-  - "entity.system.platform_version.split('.')[0] == '8'"
-  - "entity.system.arch == 'amd64'"
-
-- platform: "debian9"
-  arch: "amd64"
-  asset_filename: "monitoring-plugins-debian9_#{version}_linux_amd64.tar.gz"
-  sha_filename: "#{repo}_#{version}_sha512-checksums.txt"
-  filter:
-  - "entity.system.os == 'linux'"
-  - "entity.system.platform_family == 'debian'"
-  - "entity.system.platform_version.split('.')[0] == '9'"
-  - "entity.system.arch == 'amd64'"
-
 - platform: "debian10"
   arch: "amd64"
   asset_filename: "monitoring-plugins-debian10_#{version}_linux_amd64.tar.gz"
@@ -100,26 +68,6 @@ builds:
   - "entity.system.os == 'linux'"
   - "entity.system.platform_family == 'debian'"
   - "entity.system.platform_version.split('.')[0] == '11'"
-  - "entity.system.arch == 'amd64'"
-
-- platform: "ubuntu1404"
-  arch: "amd64"
-  asset_filename: "monitoring-plugins-ubuntu1404_#{version}_linux_amd64.tar.gz"
-  sha_filename: "#{repo}_#{version}_sha512-checksums.txt"
-  filter:
-  - "entity.system.os == 'linux'"
-  - "entity.system.platform == 'ubuntu'"
-  - "entity.system.platform_version.split('.')[0] == '14'"
-  - "entity.system.arch == 'amd64'"
-
-- platform: "ubuntu1604"
-  arch: "amd64"
-  asset_filename: "monitoring-plugins-ubuntu1604_#{version}_linux_amd64.tar.gz"
-  sha_filename: "#{repo}_#{version}_sha512-checksums.txt"
-  filter:
-  - "entity.system.os == 'linux'"
-  - "entity.system.platform == 'ubuntu'"
-  - "entity.system.platform_version.split('.')[0] == '16'"
   - "entity.system.arch == 'amd64'"
 
 - platform: "ubuntu1804"
@@ -151,6 +99,16 @@ builds:
   - "entity.system.platform == 'ubuntu'"
   - "entity.system.platform_version.split('.')[0] == '22'"
   - "entity.system.arch == 'amd64'"
+
+- platform: "raspberrypi64"
+  arch: "arm64"
+  asset_filename: "monitoring-plugins-raspberrypi64_#{version}_linux_amd64.tar.gz"
+  sha_filename: "#{repo}_#{version}_sha512-checksums.txt"
+  filter:
+  - "entity.system.os == 'linux'"
+  - "entity.system.platform == 'debian'"
+  - "entity.system.platform_version.split('.')[0] == '11'"
+  - "entity.system.arch == 'arm64'"
 
 - platform: "xcp-ng8"
   arch: "amd64"
