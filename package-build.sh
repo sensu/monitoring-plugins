@@ -2,6 +2,7 @@
 ##
 # Adapted from sensu/sensu-go-bonsai-asset repo
 ##
+set -e
 
 # Hardwiring repo-name for now, untile the Dockerfile logic is abstracted/tested to use name as passed to docker as build arg
 REPO_NAME="monitoring-plugins"
