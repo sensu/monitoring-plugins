@@ -11,7 +11,7 @@ WORKDIR /
 RUN apk --update add bash coreutils libintl curl gcc g++ make openssl-dev net-snmp-tools linux-headers procps && \
     curl -s -L -O https://www.monitoring-plugins.org/download/monitoring-plugins-2.3.3.tar.gz && \
     tar xzf monitoring-plugins-2.3.3.tar.gz && \
-    cd monitoring-plugins-2.3.1 && \
+    cd monitoring-plugins-2.3.3 && \
     ./configure --prefix=/usr --libexecdir=/usr/lib/monitoring-plugins && \
     make && \
     make install
