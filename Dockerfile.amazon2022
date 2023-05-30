@@ -1,6 +1,6 @@
-FROM debian:stretch as builder
+FROM amazonlinux:2022 as builder
 
-ARG SENSU_GO_ASSET_NAME="monitoring-plugins-debian9"
+ARG SENSU_GO_ASSET_NAME="monitoring-plugins-amazon2022"
 ARG SENSU_GO_ASSET_VERSION="2.7.0"
 ARG PLUGINS="check_http"
 
@@ -8,8 +8,8 @@ ADD create-sensu-asset /usr/bin/create-sensu-asset
 
 WORKDIR /
 
-RUN apt-get update && \
-    apt-get install -y build-essential curl libexpat1-dev openssl libssl-dev libz-dev snmp dnsutils procps && \
+RUN yum groupinstall -y "Development Tools" && \
+    yum install -y curl expat-devel openssl openssl-devel net-snmp-utils bind-utils which procps && \
     curl -s -L -O https://www.monitoring-plugins.org/download/monitoring-plugins-2.3.1.tar.gz && \
     tar xzf monitoring-plugins-2.3.1.tar.gz && \
     cd monitoring-plugins-2.3.1 && \

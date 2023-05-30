@@ -4,11 +4,12 @@ WORK_DIR=/tmp/sensu-assets
 BUILD_DIR=$WORK_DIR/build
 OUTPUT_DIR=$PWD
 GREP_EXCLUDE='(ld.so|ld-linux-x86-64.so|libBrokenLocale.so|libSegFault.so|libanl.so|libc.so|libdl.so|libm.so|libmvec.so|libnss_compat.so|libnss_dns.so|libnss_files.so|libpthread.so|libresolv.so|librt.so|libthread_db.so|libutil.so|vdso.so)'
+ASSET_ARCH='amd64'
 
 mkdir -p $BUILD_DIR
 
 # Read arguments
-while getopts ha:v:b:l:i:e:o: argument;
+while getopts ha:v:b:l:i:e:o:A: argument;
 do
   case "${argument}"
     in
@@ -59,6 +60,8 @@ do
         echo "  -o OUTPUT_DIR"
         echo "          The directory where the asset should be created"
         echo "          (output). Defaults to \$PWD"
+        echo "  -A ARCH"
+        echo "          Architecture of the asset. Defaults to amd64)"
         exit 0;
         ;;
       a)
@@ -82,7 +85,9 @@ do
       o)
         OUTPUT_DIR=${OPTARG}
         ;;
-
+      A)
+        ASSET_ARCH=${OPTARG}
+        ;;
   esac
 done;
 
@@ -172,12 +177,8 @@ if [[ -n $EXTRAS ]]; then
 fi
 
 export ASSET_OS="_$(uname -s | tr '[:upper:]' '[:lower:]')"
-export ASSET_ARCH="_$(uname -m)"
-if [[ $ASSET_ARCH = "_x86_64" ]]; then
-  export ASSET_ARCH="_amd64"
-fi
 
-ASSET="${OUTPUT_DIR}/${ASSET_NAME}${ASSET_VERSION}${ASSET_OS}${ASSET_ARCH}.tar.gz"
+ASSET="${OUTPUT_DIR}/${ASSET_NAME}${ASSET_VERSION}${ASSET_OS}_${ASSET_ARCH}.tar.gz"
 echo "";
 echo "Packaging contents of ${PKG_DIR} into ${ASSET}";
 echo "";
