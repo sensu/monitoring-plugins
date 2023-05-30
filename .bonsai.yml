@@ -50,6 +50,26 @@ builds:
   - "entity.system.platform_version.split('.')[0] == '8'"
   - "entity.system.arch == 'amd64'"
 
+- platform: "centos9"
+  arch: "amd64"
+  asset_filename: "monitoring-plugins-rocky9_#{version}_linux_amd64.tar.gz"
+  sha_filename: "#{repo}_#{version}_sha512-checksums.txt"
+  filter:
+  - "entity.system.os == 'linux'"
+  - "entity.system.platform_family == 'rhel'"
+  - "entity.system.platform_version.split('.')[0] == '9'"
+  - "entity.system.arch == 'amd64'"
+
+- platform: "rocky9"
+  arch: "amd64"
+  asset_filename: "monitoring-plugins-rocky9_#{version}_linux_amd64.tar.gz"
+  sha_filename: "#{repo}_#{version}_sha512-checksums.txt"
+  filter:
+  - "entity.system.os == 'linux'"
+  - "entity.system.platform_family == 'rhel'"
+  - "entity.system.platform_version.split('.')[0] == '9'"
+  - "entity.system.arch == 'amd64'"
+
 - platform: "debian10"
   arch: "amd64"
   asset_filename: "monitoring-plugins-debian10_#{version}_linux_amd64.tar.gz"
