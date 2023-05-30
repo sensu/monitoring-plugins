@@ -10,8 +10,8 @@ WORKDIR /
 
 RUN apt-get update && \
     apt-get install -y build-essential curl libexpat1-dev openssl libssl-dev libz-dev snmp dnsutils procps gcc-aarch64-linux-gnu && \
-    curl -s -L -O https://www.monitoring-plugins.org/download/monitoring-plugins-2.3.1.tar.gz && \
-    tar xzf monitoring-plugins-2.3.1.tar.gz && \
+    curl -s -L -O https://www.monitoring-plugins.org/download/monitoring-plugins-2.3.3.tar.gz && \
+    tar xzf monitoring-plugins-2.3.3.tar.gz && \
     cd monitoring-plugins-2.3.1 && \
     ./configure --host=arm-elf-linux CC=aarch64-linux-gnu-gcc  --prefix=/usr --libexecdir=/usr/lib/monitoring-plugins && \
     make && \
