@@ -5,7 +5,7 @@ export SENSU_GO_ASSET_VERSION=$(git describe --abbrev=0 --tags)
 
 mkdir assets/
 
-for PLATFORM in alpine amazon2 amazon2022 debian8 debian9 debian10 debian11 centos6 centos7 centos8 rocky9 ubuntu1404 ubuntu1604 ubuntu1804 ubuntu2004 ubuntu2204 raspberrypi64;
+for PLATFORM in alpine amazon2 amazon2023 debian8 debian9 debian10 debian11 centos6 centos7 centos8 rocky9 ubuntu1404 ubuntu1604 ubuntu1804 ubuntu2004 ubuntu2204 raspberrypi64;
 do
   if [[ ${PLATFORM} == "raspberrypi64"  ]]; then
     export ARCH="arm64"

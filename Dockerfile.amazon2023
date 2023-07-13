@@ -1,6 +1,6 @@
-FROM amazonlinux:2022 as builder
+FROM amazonlinux:2023 as builder
 
-ARG SENSU_GO_ASSET_NAME="monitoring-plugins-amazon2022"
+ARG SENSU_GO_ASSET_NAME="monitoring-plugins-amazon2023"
 ARG SENSU_GO_ASSET_VERSION="2.7.0"
 ARG PLUGINS="check_http"
 
@@ -9,7 +9,7 @@ ADD create-sensu-asset /usr/bin/create-sensu-asset
 WORKDIR /
 
 RUN yum groupinstall -y "Development Tools" && \
-    yum install -y expat-devel openssl openssl-devel bind-utils which procps && \
+    yum install -y expat-devel openssl openssl-devel net-snmp-utils bind-utils which procps && \
     curl -s -L -O https://www.monitoring-plugins.org/download/monitoring-plugins-2.3.3.tar.gz && \
     tar xzf monitoring-plugins-2.3.3.tar.gz && \
     cd monitoring-plugins-2.3.3 && \

@@ -20,14 +20,14 @@ builds:
   - "entity.system.platform_version == '2'"
   - "entity.system.arch == 'amd64'"
 
-- platform: "amazon2022"
+- platform: "amazon2023"
   arch: "amd64"
-  asset_filename: "monitoring-plugins-amazon2022_#{version}_linux_amd64.tar.gz"
+  asset_filename: "monitoring-plugins-amazon2023_#{version}_linux_amd64.tar.gz"
   sha_filename: "#{repo}_#{version}_sha512-checksums.txt"
   filter:
   - "entity.system.os == 'linux'"
   - "entity.system.platform == 'amazon'"
-  - "entity.system.platform_version == '2022'"
+  - "entity.system.platform_version == '2023'"
   - "entity.system.arch == 'amd64'"
 
 - platform: "centos7"
