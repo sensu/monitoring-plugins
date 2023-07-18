@@ -18,7 +18,7 @@ export PLUGINS="check_disk,check_dns,check_http,check_load,check_log,check_ntp,c
 [[ -z "$GITHUB_TOKEN" ]] && { echo "GITHUB_TOKEN is empty, upload disabled" ; }
 [[ -z "$TRAVIS_REPO_SLUG" ]] && { echo "TRAVIS_REPO_SLUG is empty"; exit 1; }
 if [[ -z "$1" ]]; then 
-  echo "Parameter 1, PLATFORMS is empty, using default set" ; platforms=( alpine amazon2 amazonlinux2022 debian10 debian11 centos7 centos8 ubuntu1804 ubuntu2004 ubuntu2204 raspberrypi64 );
+  echo "Parameter 1, PLATFORMS is empty, using default set" ; platforms=( alpine amazon2 amazon2022 debian10 debian11 centos7 centos8 ubuntu1804 ubuntu2004 ubuntu2204 raspberrypi64 );
 else
   IFS=', ' read -r -a platforms <<< "$1"
 fi

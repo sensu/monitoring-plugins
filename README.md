@@ -1,5 +1,4 @@
 [![Sensu Bonsai Asset](https://img.shields.io/badge/Bonsai-Download%20Me-brightgreen.svg?colorB=89C967&logo=sensu)](https://bonsai.sensu.io/assets/sensu/monitoring-plugins)
-[![Build Status](https://travis-ci.org/sensu/monitoring-plugins.svg?branch=master)](https://travis-ci.org/sensu/monitoring-plugins)
 # Sensu Assets: Monitoring Plugins
 
 ## Overview
