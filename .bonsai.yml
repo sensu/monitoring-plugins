@@ -122,7 +122,7 @@ builds:
 
 - platform: "raspberrypi64"
   arch: "arm64"
-  asset_filename: "monitoring-plugins-raspberrypi64_#{version}_linux_amd64.tar.gz"
+  asset_filename: "monitoring-plugins-raspberrypi64_#{version}_linux_arm64.tar.gz"
   sha_filename: "#{repo}_#{version}_sha512-checksums.txt"
   filter:
   - "entity.system.os == 'linux'"
