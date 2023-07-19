@@ -50,7 +50,7 @@ builds:
   - "entity.system.platform_version.split('.')[0] == '8'"
   - "entity.system.arch == 'amd64'"
 
-- platform: "el9"
+- platform: "rocky9"
   arch: "amd64"
   asset_filename: "monitoring-plugins-rocky9_#{version}_linux_amd64.tar.gz"
   sha_filename: "#{repo}_#{version}_sha512-checksums.txt"
